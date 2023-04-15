@@ -2,12 +2,6 @@ const{User,Book} = require('../models');
 
 const resolvers = {
   Query: {
-    Users: async () => {
-      return User.find();
-    },
-    User: async (parent, { _id }) => {
-      return User.findOne({ _id: _id });
-    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('thoughts');
