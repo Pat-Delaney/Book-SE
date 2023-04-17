@@ -37,13 +37,15 @@ const resolvers = {
 
       return { token, user };
     },
-    saveBook: async (parent, { token, book }, context) => {
+    saveBook: async (parent, {input}, context) => {
       if (context.user) {
-        await User.findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: book } },
+          { $addToSet: { savedBooks: input } },
           { new: true, runValidators: true }
         );
+        console.log(updatedUser);
+        return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
       

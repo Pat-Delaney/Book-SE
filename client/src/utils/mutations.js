@@ -31,13 +31,13 @@ mutation saveBook($authors: [String], $description: String!, $bookId: String!, $
       username
       email
       savedBooks {
-        _id
-        authors
-        description
-        bookId
-        image
-        link
-        title
+          _id
+          authors
+          description
+          bookId
+          image
+          link
+          title
       }
   }
 }
